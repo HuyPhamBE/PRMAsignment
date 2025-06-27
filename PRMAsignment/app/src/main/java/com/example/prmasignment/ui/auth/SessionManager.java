@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 public class SessionManager {
     private static final String PREF_NAME = "app_prefs";
     private static final String KEY_TOKEN = "token";
+    private static final String KEY_ROLE = "role";
+    private static final String KEY_USERNAME = "username";
 
     private SharedPreferences prefs;
 
@@ -22,8 +24,23 @@ public class SessionManager {
         return prefs.getString(KEY_TOKEN, null);
     }
 
-    public void clearToken() {
-        prefs.edit().remove(KEY_TOKEN).apply();
+    public void saveRole(String role) {
+        prefs.edit().putString(KEY_ROLE, role).apply();
+    }
+
+    public String getRole() {
+        return prefs.getString(KEY_ROLE, null);
+    }
+
+    public void saveUsername(String username) {
+        prefs.edit().putString(KEY_USERNAME, username).apply();
+    }
+
+    public String getUsername() {
+        return prefs.getString(KEY_USERNAME, null);
+    }
+
+    public void clearSession() {
+        prefs.edit().clear().apply();
     }
 }
-

@@ -1,6 +1,8 @@
 
 package com.example.prmasignment.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.prmasignment.api.ApiClient;
@@ -9,6 +11,7 @@ import com.example.prmasignment.model.LoginRequest;
 import com.example.prmasignment.model.LoginResponse;
 import com.example.prmasignment.model.RegisterUserRequest;
 import com.example.prmasignment.model.RegisterUserResponse;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,15 +29,24 @@ public class AuthRepository {
         authApi.login(request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                liveData.postValue(response.body());
+                Log.d("AuthRepo", "Response code: " + response.code());
+                Log.d("AuthRepo", "Response body: " + new Gson().toJson(response.body())); // thêm gson để in
+
+                if (response.isSuccessful() && response.body() != null) {
+                    liveData.postValue(response.body());
+                } else {
+                    liveData.postValue(null);
+                }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.e("AuthRepo", "Login failed", t);
                 liveData.postValue(null);
             }
         });
     }
+
 
     public void register(RegisterUserRequest request, MutableLiveData<RegisterUserResponse> liveData) {
         authApi.register(request).enqueue(new Callback<RegisterUserResponse>() {

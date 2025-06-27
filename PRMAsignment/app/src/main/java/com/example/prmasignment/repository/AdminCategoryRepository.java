@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.prmasignment.api.AdminCategoryApi;
 import com.example.prmasignment.api.ApiClient;
+import com.example.prmasignment.model.ApiResponse;
 import com.example.prmasignment.model.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -21,22 +23,23 @@ public class AdminCategoryRepository {
     }
 
     public void getCategories(MutableLiveData<List<Category>> liveData) {
-        api.getCategories().enqueue(new Callback<List<Category>>() {
+        api.getCategories().enqueue(new Callback<ApiResponse<List<Category>>>() {
             @Override
-            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    liveData.postValue(response.body());
+            public void onResponse(Call<ApiResponse<List<Category>>> call, Response<ApiResponse<List<Category>>> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
+                    liveData.postValue(response.body().getData());
                 } else {
-                    liveData.postValue(null);
+                    liveData.postValue(new ArrayList<>()); // hoặc null tùy bạn muốn xử lý UI như thế nào
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Category>> call, Throwable t) {
-                liveData.postValue(null);
+            public void onFailure(Call<ApiResponse<List<Category>>> call, Throwable t) {
+                liveData.postValue(new ArrayList<>()); // hoặc null
             }
         });
     }
+
 
     public void createCategory(Category category, MutableLiveData<Category> resultLiveData) {
         api.createCategory(category).enqueue(new Callback<Category>() {

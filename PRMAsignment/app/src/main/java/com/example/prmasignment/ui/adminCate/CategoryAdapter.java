@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prmasignment.R;
 import com.example.prmasignment.model.Category;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
@@ -32,7 +33,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void setCategoryList(List<Category> newList) {
         this.categoryList = newList;
         notifyDataSetChanged();
+
     }
+
 
     @NonNull
     @Override
@@ -57,17 +60,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return (categoryList != null) ? categoryList.size() : 0;
     }
 
+
+
     static class CategoryViewHolder extends RecyclerView.ViewHolder {
 
         TextView textName, textDescription;
-        ImageButton buttonEdit, buttonDelete;
+        MaterialButton buttonEdit, buttonDelete; // ✅ Đúng kiểu
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.textCategoryName);
             textDescription = itemView.findViewById(R.id.textCategoryDescription);
-            buttonEdit = itemView.findViewById(R.id.buttonEdit);
-            buttonDelete = itemView.findViewById(R.id.buttonDelete);
+            buttonEdit = itemView.findViewById(R.id.buttonEdit);       // ✅ Cast đúng MaterialButton
+            buttonDelete = itemView.findViewById(R.id.buttonDelete);   // ✅ Cast đúng MaterialButton
         }
     }
+
 }
