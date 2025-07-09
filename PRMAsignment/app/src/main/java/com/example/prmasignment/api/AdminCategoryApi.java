@@ -10,8 +10,7 @@ public interface AdminCategoryApi {
     String urlApi = "/api/categories";
     @GET(urlApi + "/get_all_categories")
     Call<ApiResponse<List<Category>>> getCategories();
-
-
+    
     @POST(urlApi + "/create_category")
     Call<Category> createCategory(@Body Category category);
 

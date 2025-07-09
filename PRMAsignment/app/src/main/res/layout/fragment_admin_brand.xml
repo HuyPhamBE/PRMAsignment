@@ -1,4 +1,3 @@
-<!-- activity_category_management.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -6,7 +5,7 @@
     android:orientation="vertical"
     android:background="@color/background_color">
 
-    <!-- Top App Bar with modern design -->
+    <!-- AppBar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,37 +13,35 @@
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/surface_color"
-            app:title="Category Management"
+            app:title="Quản lý Thương hiệu"
             app:titleTextAppearance="@style/TextAppearance.Material3.HeadlineSmall"
             app:titleCentered="true"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationContentDescription="Back" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Content Container -->
+    <!-- Nội dung chính -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Header Section -->
+        <!-- Tiêu đề + nút thêm -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="16dp">
 
-            <!-- Title and Subtitle -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Manage Categories"
+                android:text="Manage Brands"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
@@ -53,17 +50,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create and organize your categories"
+                android:text="Create and organize your brands"
                 android:textSize="14sp"
                 android:textColor="@color/text_secondary"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Add Category Button -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonAddCategory"
+                android:id="@+id/buttonAddBrand"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="Add New Category"
+                android:text="Add New Brand"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:icon="@drawable/ic_add"
@@ -74,10 +70,9 @@
                 android:backgroundTint="@color/primary_color"
                 android:textColor="@color/on_primary_color"
                 app:rippleColor="@color/cardview_dark_background" />
-
         </LinearLayout>
 
-        <!-- Categories List Container -->
+        <!-- Card chứa danh sách brand -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -93,7 +88,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <!-- List Header -->
+                <!-- Header list -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,34 +101,32 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Your Categories"
+                        android:text="Your Brands"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary" />
 
                     <TextView
-                        android:id="@+id/textCategoryCount"
+                        android:id="@+id/textBrandCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0 categories"
+                        android:text="0 brands"
                         android:textSize="14sp"
                         android:textColor="@color/text_secondary"
                         android:background="@drawable/count_badge_background"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="4dp" />
-
                 </LinearLayout>
 
-                <!-- Divider -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/divider_color"
                     android:layout_marginHorizontal="20dp" />
 
-                <!-- RecyclerView -->
+                <!-- Danh sách thương hiệu -->
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewCategories"
+                    android:id="@+id/recyclerViewBrands"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -144,7 +137,7 @@
                     android:scrollbarStyle="insideOverlay"
                     android:overScrollMode="ifContentScrolls" />
 
-                <!-- Empty State (initially hidden) -->
+                <!-- Empty state -->
                 <LinearLayout
                     android:id="@+id/layoutEmptyState"
                     android:layout_width="match_parent"
@@ -165,7 +158,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No categories yet"
+                        android:text="No brands yet"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"
@@ -174,27 +167,33 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Create your first category to get started"
+                        android:text="Create your first brand to get started"
                         android:textSize="14sp"
                         android:textColor="@color/text_secondary"
                         android:textAlignment="center"
                         android:layout_marginBottom="24dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonAddFirstCategory"
+                        android:id="@+id/buttonAddFirstBrand"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add Category"
+                        android:text="Add Brand"
                         app:icon="@drawable/ic_add"
                         style="@style/Widget.Material3.Button.TonalButton"
                         app:cornerRadius="20dp" />
-
                 </LinearLayout>
 
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge" />
 
 </LinearLayout>

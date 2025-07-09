@@ -9,7 +9,7 @@ public class ApiClient {
     private static Retrofit retrofitNoAuth = null;
     private static Retrofit retrofitWithAuth = null;
 
-    private static final String BASE_URL = "http://192.168.1.15:8080/";
+    private static final String BASE_URL = "http://192.168.1.3:8080/";
 
     public static Retrofit getClientNoAuth() {
         if (retrofitNoAuth == null) {

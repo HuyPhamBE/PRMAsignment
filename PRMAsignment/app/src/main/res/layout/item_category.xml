@@ -102,7 +102,7 @@
                     app:iconGravity="start"
                     style="@style/Widget.Material3.Button.IconButton"
                     android:contentDescription="Delete category"
-                    app:rippleColor="@color/delete_ripple_color" />
+                    app:rippleColor="@color/design_default_color_primary_dark" />
 
             </LinearLayout>
 

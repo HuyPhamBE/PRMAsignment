@@ -29,7 +29,7 @@ public class AdminCategoryRepository {
                 if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
                     liveData.postValue(response.body().getData());
                 } else {
-                    liveData.postValue(new ArrayList<>()); // hoặc null tùy bạn muốn xử lý UI như thế nào
+                    liveData.postValue(new ArrayList<>());
                 }
             }
 

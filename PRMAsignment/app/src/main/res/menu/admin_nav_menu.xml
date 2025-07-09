@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Nhóm menu chính -->
+    <group android:checkableBehavior="single">
+        <!-- Dashboard -->
+        <item
+            android:id="@+id/nav_dashboard"
+            android:title="Tổng quan" />
+
+        <!-- Quản lý User -->
+        <item
+            android:id="@+id/nav_users"
+            android:title="Quản lý User" />
+
+        <!-- Quản lý Sản phẩm -->
+        <item
+            android:id="@+id/nav_products"
+            android:title="Quản lý Sản phẩm">
+            <menu>
+                <item
+                    android:id="@+id/nav_product_list"
+                    android:title="Danh sách sản phẩm"/>
+                <item
+                    android:id="@+id/nav_categories"
+                    android:title="Danh mục"/>
+                <item
+                    android:id="@+id/nav_brands"
+                    android:title="Thương hiệu"/>
+            </menu>
+        </item>
+
+        <!-- Quản lý Đơn hàng -->
+        <item
+            android:id="@+id/nav_orders"
+            android:title="Quản lý Đơn hàng" />
+
+        <!-- Quản lý Cửa hàng -->
+        <item
+            android:id="@+id/nav_stores"
+            android:title="Quản lý Cửa hàng" />
+    </group>
+
+    <!-- Nhóm menu phụ (không checkable) -->
+    <group android:id="@+id/group_settings">
+        <!-- Cài đặt -->
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Cài đặt" />
+
+        <!-- Đăng xuất -->
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Đăng xuất" />
+    </group>
+</menu>
