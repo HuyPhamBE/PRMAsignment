@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.example.prmasignment.R;
 import com.example.prmasignment.ui.adminBrand.AdminBrandFragment;
 import com.example.prmasignment.ui.adminCate.AdminCategoryFragment;
+import com.example.prmasignment.ui.adminProduct.AdminProductFragment;
 import com.example.prmasignment.ui.dashboard.AdminDashboardFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -40,6 +41,8 @@ public class AdminActivity extends AppCompatActivity {
                 selectedFragment = new AdminCategoryFragment();
             } else if (id == R.id.nav_brands) {
                 selectedFragment = new AdminBrandFragment();
+            } else if (id == R.id.nav_product_list) {
+                selectedFragment = new AdminProductFragment();
             }
 
 
