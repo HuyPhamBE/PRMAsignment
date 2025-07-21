@@ -1,4 +1,4 @@
-package com.example.prmasignment;
+package UI.Notifications;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.prmasignment.R;
 import com.example.prmasignment.model.CartItem;
 
 public class NotificationManager {

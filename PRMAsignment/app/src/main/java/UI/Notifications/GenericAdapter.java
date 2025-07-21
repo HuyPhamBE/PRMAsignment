@@ -1,4 +1,4 @@
-package com.example.prmasignment;
+package UI.Notifications;
 
 import android.view.LayoutInflater;
 import android.view.View;

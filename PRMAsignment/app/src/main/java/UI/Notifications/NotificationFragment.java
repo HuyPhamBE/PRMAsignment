@@ -1,4 +1,4 @@
-package com.example.prmasignment;
+package UI.Notifications;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.prmasignment.R;
 import com.example.prmasignment.model.CartItem;
 
 import java.util.ArrayList;
