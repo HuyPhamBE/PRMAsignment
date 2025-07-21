@@ -1,51 +1,99 @@
-<!-- res/layout/activity_register.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFF8F1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="24dp"
+        android:padding="32dp"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText android:id="@+id/editEmail"
+        <!-- 🐾 Logo -->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_petshop_logo"
+            android:contentDescription="Pet Shop Logo"
+            android:layout_marginBottom="24dp" />
+
+        <!-- ✉️ Email -->
+        <EditText
+            android:id="@+id/editEmail"
             android:hint="Email"
+            android:drawableStart="@drawable/ic_email"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <EditText android:id="@+id/editPhoneNumber"
+        <!-- 📞 Phone -->
+        <EditText
+            android:id="@+id/editPhoneNumber"
             android:hint="Phone Number"
+            android:drawableStart="@drawable/ic_phone"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <EditText android:id="@+id/editUsername"
+        <!-- 👤 Username -->
+        <EditText
+            android:id="@+id/editUsername"
             android:hint="Username"
+            android:drawableStart="@drawable/ic_user"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <EditText android:id="@+id/editFirstName"
+        <!-- 🐶 First Name -->
+        <EditText
+            android:id="@+id/editFirstName"
             android:hint="First Name"
+            android:drawableStart="@drawable/ic_user"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <EditText android:id="@+id/editLastName"
+        <!-- 🐾 Last Name -->
+        <EditText
+            android:id="@+id/editLastName"
             android:hint="Last Name"
+            android:drawableStart="@drawable/ic_user"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <EditText android:id="@+id/editPassword"
+        <!-- 🔒 Password -->
+        <EditText
+            android:id="@+id/editPassword"
             android:hint="Password"
             android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_password"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
+        <!-- 🧡 Register -->
         <Button
             android:id="@+id/buttonRegister"
             android:text="Register"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#FF8C42"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"/>
-
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_button_orange" />
     </LinearLayout>
 </ScrollView>

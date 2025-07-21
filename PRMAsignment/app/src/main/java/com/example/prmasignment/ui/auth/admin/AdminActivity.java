@@ -9,6 +9,7 @@ import com.example.prmasignment.R;
 import com.example.prmasignment.ui.adminBrand.AdminBrandFragment;
 import com.example.prmasignment.ui.adminCate.AdminCategoryFragment;
 import com.example.prmasignment.ui.adminProduct.AdminProductFragment;
+import com.example.prmasignment.ui.adminUser.AdminUserFragment;
 import com.example.prmasignment.ui.dashboard.AdminDashboardFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -43,7 +44,10 @@ public class AdminActivity extends AppCompatActivity {
                 selectedFragment = new AdminBrandFragment();
             } else if (id == R.id.nav_product_list) {
                 selectedFragment = new AdminProductFragment();
+            } else if (id == R.id.nav_users) {
+                selectedFragment = new AdminUserFragment();
             }
+
 
 
             if (selectedFragment != null) {

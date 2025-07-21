@@ -1,13 +1,10 @@
 package com.example.prmasignment.model;
 
-public class TopProduct {
+import java.util.Map;
+
+public class TopSellingResponse {
     private String productName;
     private int quantitySold;
-
-    public TopProduct(String productName, int quantitySold) {
-        this.productName = productName;
-        this.quantitySold = quantitySold;
-    }
 
     public String getProductName() {
         return productName;
@@ -17,4 +14,5 @@ public class TopProduct {
         return quantitySold;
     }
 }
+
 

@@ -1,36 +1,66 @@
-<!-- res/layout/activity_login.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="24dp"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFF8F1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editUsername"
-        android:hint="Username"
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editPassword"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"/>
+        <!-- 🐾 Logo -->
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_petshop_logo"
+            android:layout_gravity="center"
+            android:contentDescription="Pet Shop Logo"
+            android:layout_marginBottom="24dp"/>
 
-    <Button
-        android:id="@+id/buttonLogin"
-        android:text="Login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"/>
+        <!-- 👤 Username -->
+        <EditText
+            android:id="@+id/editUsername"
+            android:hint="Username"
+            android:drawableStart="@drawable/ic_user"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/buttonGoToRegister"
-        android:text="Register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"/>
+        <!-- 🔒 Password -->
+        <EditText
+            android:id="@+id/editPassword"
+            android:hint="Password"
+            android:drawableStart="@drawable/ic_password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
 
-</LinearLayout>
+        <!-- 🔓 Login -->
+        <Button
+            android:id="@+id/buttonLogin"
+            android:text="Login"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button_orange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"/>
+
+        <!-- ➕ Register -->
+        <Button
+            android:id="@+id/buttonGoToRegister"
+            android:text="Register"
+            android:textColor="#FF8C42"
+            android:background="@drawable/bg_button_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+</ScrollView>

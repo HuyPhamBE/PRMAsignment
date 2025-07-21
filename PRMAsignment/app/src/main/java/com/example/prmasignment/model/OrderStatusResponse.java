@@ -1,13 +1,10 @@
 package com.example.prmasignment.model;
 
-public class OrderStatus {
+import java.util.Map;
+
+public class OrderStatusResponse {
     private String status;
     private int count;
-
-    public OrderStatus(String status, int count) {
-        this.status = status;
-        this.count = count;
-    }
 
     public String getStatus() {
         return status;
@@ -17,3 +14,4 @@ public class OrderStatus {
         return count;
     }
 }
+

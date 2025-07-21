@@ -5,12 +5,17 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.prmasignment.api.AdminDashboardApi;
 import com.example.prmasignment.api.ApiClient;
+import com.example.prmasignment.model.ApiResponse;
+import com.example.prmasignment.model.OrderStatusResponse;
 import com.example.prmasignment.model.TopProduct;
 import com.example.prmasignment.model.RevenueTrend;
 import com.example.prmasignment.model.OrderStatus;
+import com.example.prmasignment.model.TopSellingResponse;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,11 +30,14 @@ public class AdminDashboardRepository {
     }
 
     public void getTotalOrdersToday(MutableLiveData<Long> liveData) {
-        api.getTotalOrdersToday().enqueue(new Callback<>() {
+        api.getTotalOrdersToday().enqueue(new Callback<Long>() {
             @Override
             public void onResponse(Call<Long> call, Response<Long> response) {
                 if (response.isSuccessful()) {
+                    Log.d("DashboardRepo", "Orders today: " + response.body());
                     liveData.postValue(response.body());
+                } else {
+                    Log.e("DashboardRepo", "Failed: " + response.code());
                 }
             }
 
@@ -40,11 +48,13 @@ public class AdminDashboardRepository {
         });
     }
 
+
     public void getOrdersThisMonth(MutableLiveData<Long> liveData) {
-        api.getOrdersThisMonth().enqueue(new Callback<>() {
+        api.getOrdersThisMonth().enqueue(new Callback<Long>() {
             @Override
             public void onResponse(Call<Long> call, Response<Long> response) {
                 if (response.isSuccessful()) {
+                    Log.d("DashboardRepo", "getOrdersThisMonth today: " + response.body());
                     liveData.postValue(response.body());
                 }
             }
@@ -57,10 +67,11 @@ public class AdminDashboardRepository {
     }
 
     public void getTotalRevenue(MutableLiveData<BigDecimal> liveData, String status) {
-        api.getTotalRevenue(status).enqueue(new Callback<>() {
+        api.getTotalRevenue("Cancelled").enqueue(new Callback<BigDecimal>() {
             @Override
             public void onResponse(Call<BigDecimal> call, Response<BigDecimal> response) {
                 if (response.isSuccessful()) {
+                    Log.d("DashboardRepo", "getTotalRevenue today: " + response.body());
                     liveData.postValue(response.body());
                 }
             }
@@ -72,51 +83,62 @@ public class AdminDashboardRepository {
         });
     }
 
-    public void getMonthlyRevenue(MutableLiveData<RevenueTrend> liveData, String status, int year) {
-        api.getMonthlyRevenue(status, year).enqueue(new Callback<>() {
+//    public void getMonthlyRevenue(MutableLiveData<List<RevenueTrend>> liveData, String status, int year) {
+//        api.getMonthlyRevenue(status, year).enqueue(new Callback<List<RevenueTrend>>() {
+//            @Override
+//            public void onResponse(Call<List<RevenueTrend>> call, Response<List<RevenueTrend>> response) {
+//                if (response.isSuccessful() && response.body() != null) {
+//                    liveData.postValue(response.body());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<RevenueTrend>> call, Throwable t) {
+//                Log.e("DashboardRepo", "getMonthlyRevenue failed", t);
+//            }
+//        });
+//    }
+
+    public void getOrderStatus(MutableLiveData<List<OrderStatus>> liveData) {
+        api.getOrderStatus().enqueue(new Callback<ApiResponse<Map<String, Integer>>>() {
             @Override
-            public void onResponse(Call<RevenueTrend> call, Response<RevenueTrend> response) {
-                if (response.isSuccessful()) {
-                    liveData.postValue(response.body());
+            public void onResponse(Call<ApiResponse<Map<String, Integer>>> call, Response<ApiResponse<Map<String, Integer>>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<OrderStatus> transformed = new ArrayList<>();
+                    for (Map.Entry<String, Integer> entry : response.body().getData().entrySet()) {
+                        transformed.add(new OrderStatus(entry.getKey(), entry.getValue()));
+                    }
+                    liveData.postValue(transformed);
                 }
             }
 
             @Override
-            public void onFailure(Call<RevenueTrend> call, Throwable t) {
-                Log.e("DashboardRepo", "getMonthlyRevenue failed", t);
-            }
-        });
-    }
-
-    public void getOrderStatus(MutableLiveData<OrderStatus> liveData) {
-        api.getOrderStatus().enqueue(new Callback<>() {
-            @Override
-            public void onResponse(Call<OrderStatus> call, Response<OrderStatus> response) {
-                if (response.isSuccessful()) {
-                    liveData.postValue(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<OrderStatus> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<Map<String, Integer>>> call, Throwable t) {
                 Log.e("DashboardRepo", "getOrderStatus failed", t);
             }
         });
     }
 
-    public void getTopProducts(MutableLiveData<TopProduct> liveData) {
-        api.getTopProducts().enqueue(new Callback<>() {
+
+    public void getTopProducts(MutableLiveData<List<TopProduct>> liveData) {
+        api.getTopProducts().enqueue(new Callback<ApiResponse<Map<String, Integer>>>() {
             @Override
-            public void onResponse(Call<TopProduct> call, Response<TopProduct> response) {
-                if (response.isSuccessful()) {
-                    liveData.postValue(response.body());
+            public void onResponse(Call<ApiResponse<Map<String, Integer>>> call, Response<ApiResponse<Map<String, Integer>>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<TopProduct> list = new ArrayList<>();
+                    for (Map.Entry<String, Integer> entry : response.body().getData().entrySet()) {
+                        list.add(new TopProduct(entry.getKey(), entry.getValue()));
+                    }
+                    liveData.postValue(list);
                 }
             }
 
             @Override
-            public void onFailure(Call<TopProduct> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<Map<String, Integer>>> call, Throwable t) {
                 Log.e("DashboardRepo", "getTopProducts failed", t);
             }
         });
     }
+
+
 }
