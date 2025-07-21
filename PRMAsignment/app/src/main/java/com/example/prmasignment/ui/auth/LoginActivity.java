@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.prmasignment.R;
 import com.example.prmasignment.ui.auth.admin.AdminActivity;
+import com.example.prmasignment.ui.profile.ProfileActivity;
+import com.example.prmasignment.ui.profile.UserActivity;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -63,8 +63,8 @@ public class LoginActivity extends AppCompatActivity {
                     case "ADMIN":
                         startActivity(new Intent(this, AdminActivity.class));
                         break;
-                    case "USER":
-//                        startActivity(new Intent(this, UserActivity.class)); // <- tạo sau
+                    case "CUSTOMER":
+                        startActivity(new Intent(this, HomeActivity.class)); // <- tạo sau
                         break;
                     default:
                         Toast.makeText(this, "Unknown role", Toast.LENGTH_SHORT).show();
