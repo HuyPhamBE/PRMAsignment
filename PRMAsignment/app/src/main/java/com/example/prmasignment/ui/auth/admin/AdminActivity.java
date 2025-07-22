@@ -1,5 +1,6 @@
 package com.example.prmasignment.ui.auth.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -9,7 +10,10 @@ import com.example.prmasignment.R;
 import com.example.prmasignment.ui.adminBrand.AdminBrandFragment;
 import com.example.prmasignment.ui.adminCate.AdminCategoryFragment;
 import com.example.prmasignment.ui.adminProduct.AdminProductFragment;
+import com.example.prmasignment.ui.adminStoreLoction.AdminStoreLocationFragment;
 import com.example.prmasignment.ui.adminUser.AdminUserFragment;
+import com.example.prmasignment.ui.auth.LoginActivity;
+import com.example.prmasignment.ui.auth.SessionManager;
 import com.example.prmasignment.ui.dashboard.AdminDashboardFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,7 +50,17 @@ public class AdminActivity extends AppCompatActivity {
                 selectedFragment = new AdminProductFragment();
             } else if (id == R.id.nav_users) {
                 selectedFragment = new AdminUserFragment();
+            } else if (id == R.id.nav_stores) {
+                selectedFragment = new AdminStoreLocationFragment();
+            }  else if (id == R.id.nav_logout) {
+                SessionManager sessionManager = new SessionManager(this);
+                sessionManager.clearSession();
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa backstack
+                startActivity(intent);
+                finish();
             }
+
 
 
 

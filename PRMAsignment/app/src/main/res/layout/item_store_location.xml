@@ -4,52 +4,80 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:backgroundTint="@android:color/white">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- 🐾 Store name -->
         <TextView
             android:id="@+id/textStoreName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Store Name"
-            android:textSize="16sp"
+            android:text="Pet Paradise - Saigon"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:textColor="@color/text_primary" />
+            android:textColor="@color/text_primary"/>
 
+        <!-- 🏠 Address -->
         <TextView
             android:id="@+id/textStoreAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Address"
+            android:text="123 Meow Street, Cat City"
             android:textColor="@color/text_secondary"
             android:layout_marginTop="4dp" />
 
+        <!-- 📞 Phone -->
         <TextView
             android:id="@+id/textStorePhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Phone Number"
+            android:text="Phone: 0123 456 789"
             android:textColor="@color/text_secondary"
             android:layout_marginTop="4dp" />
 
+        <!-- 🕒 Hours -->
+        <TextView
+            android:id="@+id/textStoreHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open: 9:00 AM - 8:00 PM"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonUpdateStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:textColor="@color/error_color"
+            android:layout_marginTop="12dp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:icon="@drawable/ic_edit"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:strokeColor="@color/error_color"
+            android:paddingHorizontal="20dp"/>
+
+        <!-- ❌ Delete -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDeleteStore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"
-            style="@style/Widget.Material3.Button.OutlinedButton"
             android:textColor="@color/error_color"
-            android:layout_marginTop="8dp"
-            app:strokeColor="@color/error_color"
+            android:layout_marginTop="12dp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             app:icon="@drawable/ic_delete"
-            app:iconPadding="8dp"
             app:iconGravity="textStart"
-            android:paddingHorizontal="16dp" />
+            app:iconPadding="8dp"
+            app:strokeColor="@color/error_color"
+            android:paddingHorizontal="20dp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

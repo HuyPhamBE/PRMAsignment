@@ -53,6 +53,9 @@
     <color name="nav_divider">#F3F3F3</color>
     <color name="nav_header_background">#6750A4</color>
     <color name="nav_header_text">#FFFFFF</color>
+    <color name="petshop_primary">#FF8C42</color> <!-- Orange Petshop Theme -->
+    <color name="petshop_bg">#FFF8F1</color>       <!-- Light Cream Background -->
+
 
 
 </resources>

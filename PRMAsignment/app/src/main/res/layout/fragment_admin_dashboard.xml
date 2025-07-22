@@ -140,39 +140,7 @@
         </LinearLayout>
 
         <!-- Revenue Chart Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/surface_color">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Revenue Trend"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="8dp"/>
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/lineChartRevenue"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginHorizontal="8dp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <!-- Order Status Chart Card -->
         <androidx.cardview.widget.CardView

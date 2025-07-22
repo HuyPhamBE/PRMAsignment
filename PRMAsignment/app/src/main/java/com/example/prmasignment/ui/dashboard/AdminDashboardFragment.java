@@ -43,7 +43,7 @@ public class AdminDashboardFragment extends Fragment {
         txtTotalRevenue = view.findViewById(R.id.textTotalRevenue);
         txtTotalUsers = view.findViewById(R.id.textTotalUsers);
         txtTotalProducts = view.findViewById(R.id.textTotalProducts);
-        lineChartRevenue = view.findViewById(R.id.lineChartRevenue);
+//        lineChartRevenue = view.findViewById(R.id.lineChartRevenue);
         pieChartOrderStatus = view.findViewById(R.id.pieChartOrderStatus);
         recyclerViewTopProducts = view.findViewById(R.id.recyclerViewTopProducts);
 
