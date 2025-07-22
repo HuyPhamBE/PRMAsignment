@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Name"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Description"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price ($)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stock Quantity"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductImageUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Image URL"
+            android:inputType="textUri"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductCategoryId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Category ID"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductBrandId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand ID"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductPetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Type (e.g., Dog, Cat)"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductLifeStage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Life Stage (e.g., Puppy, Adult)"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductSpecialNeeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Special Needs (optional)"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Weight (kg)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>

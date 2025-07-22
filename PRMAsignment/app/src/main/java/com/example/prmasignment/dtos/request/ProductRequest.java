@@ -1,7 +1,6 @@
-package com.example.prmasignment.model;
+package com.example.prmasignment.dtos.request;
 
-public class Product {
-    private int productId;
+public class ProductRequest {
     private String name;
     private String description;
     private double price;
@@ -13,14 +12,11 @@ public class Product {
     private String lifeStage;
     private String specialNeeds;
     private double weightKg;
-    private String createdAt;
-    private String updatedAt;
 
-    public Product() {
+    public ProductRequest() {
     }
 
-    public Product(int productId, String name, String description, double price, int stockQuantity, String imageUrl, int categoryId, int brandId, String petType, String lifeStage, String specialNeeds, double weightKg, String createdAt, String updatedAt) {
-        this.productId = productId;
+    public ProductRequest(String name, String description, double price, int stockQuantity, String imageUrl, int categoryId, int brandId, String petType, String lifeStage, String specialNeeds, double weightKg) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -32,19 +28,9 @@ public class Product {
         this.lifeStage = lifeStage;
         this.specialNeeds = specialNeeds;
         this.weightKg = weightKg;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     // Getters and Setters
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
     public String getName() {
         return name;
     }
@@ -131,21 +117,5 @@ public class Product {
 
     public void setWeightKg(double weightKg) {
         this.weightKg = weightKg;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

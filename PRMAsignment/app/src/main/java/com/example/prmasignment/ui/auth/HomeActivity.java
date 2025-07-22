@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prmasignment.R;
+import com.example.prmasignment.ui.cart.CartActivity;
 import com.example.prmasignment.ui.profile.ProfileActivity;
 
 import androidx.appcompat.widget.Toolbar;
@@ -26,14 +27,20 @@ public class HomeActivity extends AppCompatActivity {
     // Inflate menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_profile, menu); // file menu_profile.xml
+        getMenuInflater().inflate(R.menu.menu_home, menu); // Updated to new menu
         return true;
     }
 
     // Handle icon click
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_profile) {
+        if (item.getItemId() == R.id.action_products) {
+            startActivity(new Intent(this, com.example.prmasignment.ui.product.ProductActivity.class));
+            return true;
+        } else if (item.getItemId() == R.id.action_cart) {
+            startActivity(new Intent(this, CartActivity.class));
+            return true;
+        } else if (item.getItemId() == R.id.action_profile) {
             // Show popup menu
             androidx.appcompat.widget.PopupMenu popup = new androidx.appcompat.widget.PopupMenu(this, findViewById(R.id.action_profile));
             popup.getMenuInflater().inflate(R.menu.menu_profile_popup, popup.getMenu());
