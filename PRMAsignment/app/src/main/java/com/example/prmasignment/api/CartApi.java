@@ -9,18 +9,18 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 public interface CartApi {
-    @GET("api/cart/user/{userId}")
+    @GET("api/carts/user/{userId}")
     Call<CartResponse> getUserCart(@Path("userId") String userId);
 
-    @POST("api/cart/add")
-    Call<ApiResponse<Void>> addToCart(@Body AddToCartRequest request);
+    @POST("api/carts/{userId}/add")
+    Call<Object> addToCart(@Path("userId") String userId, @Body AddToCartRequest request);
 
-    @PUT("api/cart/update/{cartItemId}")
+    @PUT("api/carts/items/{cartItemId}")
     Call<ApiResponse<Void>> updateCartItem(@Path("cartItemId") int cartItemId, @Body UpdateCartItemRequest request);
 
-    @DELETE("api/cart/remove/{cartItemId}")
+    @DELETE("api/carts/items/{cartItemId}")
     Call<ApiResponse<Void>> removeFromCart(@Path("cartItemId") int cartItemId);
 
-    @DELETE("api/cart/clear/{userId}")
+    @DELETE("api/carts/{userId}/items")
     Call<ApiResponse<Void>> clearCart(@Path("userId") String userId);
 }

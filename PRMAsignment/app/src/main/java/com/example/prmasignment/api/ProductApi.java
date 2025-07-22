@@ -20,14 +20,20 @@ public interface ProductApi {
     Call<List<Product>> getAllProducts();
     
     @GET("api/products/{id}")
-    Call<Product> getProductById(@Path("id") int productId);
+    Call<Product> getProductById(@Path("id") Long productId);
     
     @POST("api/products")
     Call<Product> createProduct(@Body ProductRequest productRequest);
     
+    @POST("api/products")
+    Call<Product> createProduct(@Body Product product);
+    
     @PUT("api/products/{id}")
-    Call<Product> updateProduct(@Path("id") int productId, @Body ProductRequest productRequest);
+    Call<Product> updateProduct(@Path("id") Long productId, @Body ProductRequest productRequest);
+    
+    @PUT("api/products/{id}")
+    Call<Product> updateProduct(@Path("id") Long productId, @Body Product product);
     
     @DELETE("api/products/{id}")
-    Call<Void> deleteProduct(@Path("id") int productId);
+    Call<Void> deleteProduct(@Path("id") Long productId);
 }

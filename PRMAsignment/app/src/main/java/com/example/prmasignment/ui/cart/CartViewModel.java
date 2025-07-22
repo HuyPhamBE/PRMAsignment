@@ -24,7 +24,7 @@ public class CartViewModel extends ViewModel {
         repository.getUserCart(userId, cartLiveData);
     }
 
-    public void addToCart(String userId, int productId, int quantity) {
+    public void addToCart(String userId, Long productId, int quantity) {
         AddToCartRequest request = new AddToCartRequest(userId, productId, quantity);
         repository.addToCart(request, addToCartResult);
     }

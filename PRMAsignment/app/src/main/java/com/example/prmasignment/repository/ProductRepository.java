@@ -40,7 +40,7 @@ public class ProductRepository {
         });
     }
     
-    public void getProductById(int productId, MutableLiveData<Product> liveData) {
+    public void getProductById(Long productId, MutableLiveData<Product> liveData) {
         api.getProductById(productId).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
@@ -76,7 +76,7 @@ public class ProductRepository {
         });
     }
     
-    public void updateProduct(int productId, ProductRequest productRequest, MutableLiveData<Product> resultLiveData) {
+    public void updateProduct(Long productId, ProductRequest productRequest, MutableLiveData<Product> resultLiveData) {
         api.updateProduct(productId, productRequest).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
@@ -94,7 +94,7 @@ public class ProductRepository {
         });
     }
     
-    public void deleteProduct(int productId, MutableLiveData<Boolean> resultLiveData) {
+    public void deleteProduct(Long productId, MutableLiveData<Boolean> resultLiveData) {
         api.deleteProduct(productId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

@@ -101,6 +101,7 @@
                 android:text="Edit"
                 android:textSize="12sp"
                 android:layout_marginBottom="4dp"
+                android:visibility="gone"
                 style="?android:attr/buttonStyleSmall" />
 
             <Button
@@ -110,6 +111,17 @@
                 android:text="Delete"
                 android:textSize="12sp"
                 android:layout_marginBottom="4dp"
+                android:visibility="gone"
+                style="?android:attr/buttonStyleSmall" />
+
+            <Button
+                android:id="@+id/btnViewCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Cart"
+                android:textSize="12sp"
+                android:layout_marginBottom="4dp"
+                android:visibility="gone"
                 style="?android:attr/buttonStyleSmall" />
 
             <Button

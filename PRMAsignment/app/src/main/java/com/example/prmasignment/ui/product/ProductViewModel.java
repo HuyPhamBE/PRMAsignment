@@ -27,7 +27,7 @@ public class ProductViewModel extends ViewModel {
         repository.getAllProducts(productsLiveData);
     }
     
-    public void fetchProductById(int productId) {
+    public void fetchProductById(Long productId) {
         repository.getProductById(productId, productLiveData);
     }
     
@@ -35,11 +35,11 @@ public class ProductViewModel extends ViewModel {
         repository.createProduct(productRequest, createProductResult);
     }
     
-    public void updateProduct(int productId, ProductRequest productRequest) {
+    public void updateProduct(Long productId, ProductRequest productRequest) {
         repository.updateProduct(productId, productRequest, updateProductResult);
     }
     
-    public void deleteProduct(int productId) {
+    public void deleteProduct(Long productId) {
         repository.deleteProduct(productId, deleteProductResult);
     }
 }

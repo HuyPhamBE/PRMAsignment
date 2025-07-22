@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prmasignment.R;
 import com.example.prmasignment.dtos.response.CartResponse;
 import com.example.prmasignment.ui.auth.SessionManager;
+import com.example.prmasignment.utils.CartUtils;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import java.text.NumberFormat;
@@ -137,8 +138,8 @@ public class CartActivity extends AppCompatActivity {
     private void loadCart() {
         String username = sessionManager.getUsername();
         if (username != null) {
-            // For now, we'll use username as userId. Adjust this based on your user model
-            viewModel.loadUserCart(username);
+            // Use CartUtils to properly convert username to userId and load cart
+            CartUtils.loadUserCart(this, username, viewModel.cartLiveData);
         }
     }
 
@@ -174,7 +175,8 @@ public class CartActivity extends AppCompatActivity {
                 .setPositiveButton("Clear", (dialog, which) -> {
                     String username = sessionManager.getUsername();
                     if (username != null) {
-                        viewModel.clearCart(username);
+                        // Use CartUtils to properly convert username to userId and clear cart
+                        CartUtils.clearUserCart(this, username, viewModel.clearCartResult);
                     }
                 })
                 .setNegativeButton("Cancel", null)

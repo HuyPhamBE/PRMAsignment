@@ -45,24 +45,36 @@ public class ProductDetailActivity extends AppCompatActivity {
         setupViewModel();
         setupObservers();
 
-        int productId = getIntent().getIntExtra("PRODUCT_ID", -1);
-        if (productId != -1) {
+        Long productId = getIntent().getLongExtra("PRODUCT_ID", -1L);
+        android.util.Log.d("ProductDetailActivity", "Received productId from intent: " + productId);
+        
+        if (productId != -1L) {
+            android.util.Log.d("ProductDetailActivity", "Fetching product with ID: " + productId);
             viewModel.fetchProductById(productId);
         } else {
+            android.util.Log.e("ProductDetailActivity", "Invalid product ID received");
             Toast.makeText(this, "Invalid product ID", Toast.LENGTH_SHORT).show();
             finish();
         }
 
         btnAddToCartDetail.setOnClickListener(v -> {
+            android.util.Log.d("ProductDetailActivity", "Add to Cart button clicked");
             if (currentProduct != null) {
-                CartUtils.addProductToCart(this, currentProduct.getProductId(), 1);
+                Long productIdForCart = currentProduct.getProductId();
+                android.util.Log.d("ProductDetailActivity", "Current product ID for cart: " + productIdForCart);
+                CartUtils.addProductToCart(this, productIdForCart, 1);
+            } else {
+                android.util.Log.e("ProductDetailActivity", "Current product is null");
             }
         });
 
         btnEditProductDetail.setOnClickListener(v -> {
             if (currentProduct != null) {
                 Intent intent = new Intent(this, ProductActivity.class);
-                intent.putExtra("EDIT_PRODUCT_ID", currentProduct.getProductId());
+                Long editProductId = currentProduct.getProductId();
+                if (editProductId != null) {
+                    intent.putExtra("EDIT_PRODUCT_ID", editProductId.longValue());
+                }
                 startActivity(intent);
                 finish();
             }
@@ -94,10 +106,13 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void setupObservers() {
         viewModel.productLiveData.observe(this, product -> {
+            android.util.Log.d("ProductDetailActivity", "Observer called with product: " + (product != null ? "not null" : "null"));
             if (product != null) {
+                android.util.Log.d("ProductDetailActivity", "Product details - ID: " + product.getProductId() + ", Name: " + product.getName());
                 currentProduct = product;
                 displayProductDetails(product);
             } else {
+                android.util.Log.e("ProductDetailActivity", "Product is null - showing 'not found' message");
                 Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
                 finish();
             }

@@ -23,6 +23,7 @@ import com.example.prmasignment.R;
 import com.example.prmasignment.dtos.request.ProductRequest;
 import com.example.prmasignment.model.Product;
 import com.example.prmasignment.ui.auth.SessionManager;
+import com.example.prmasignment.ui.cart.CartActivity;
 import com.example.prmasignment.utils.CartUtils;
 
 import java.util.ArrayList;
@@ -39,12 +40,16 @@ public class ProductActivity extends AppCompatActivity {
 
     private List<Product> allProducts = new ArrayList<>();
     private List<Product> filteredProducts = new ArrayList<>();
+    private boolean isAdmin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
+        // Check user role for admin functionality
+        checkUserRole();
+        
         initViews();
         setupRecyclerView();
         setupViewModel();
@@ -56,11 +61,21 @@ public class ProductActivity extends AppCompatActivity {
         viewModel.fetchAllProducts();
     }
 
+    private void checkUserRole() {
+        SessionManager sessionManager = new SessionManager(this);
+        String role = sessionManager.getRole();
+        isAdmin = "ADMIN".equalsIgnoreCase(role);
+        Log.d("ProductActivity", "User role: " + role + ", isAdmin: " + isAdmin);
+    }
+
     private void initViews() {
         recyclerViewProducts = findViewById(R.id.recyclerViewProducts);
         btnAddProduct = findViewById(R.id.btnAddProduct);
         etSearchProduct = findViewById(R.id.etSearchProduct);
         tvEmptyProducts = findViewById(R.id.tvEmptyProducts);
+        
+        // Show/hide Add Product button based on user role
+        btnAddProduct.setVisibility(isAdmin ? View.VISIBLE : View.GONE);
     }
 
     private void setupRecyclerView() {
@@ -68,25 +83,44 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onView(Product product) {
                 Intent intent = new Intent(ProductActivity.this, ProductDetailActivity.class);
-                intent.putExtra("PRODUCT_ID", product.getProductId());
-                startActivity(intent);
+                Long productId = product.getProductId();
+                if (productId != null) {
+                    intent.putExtra("PRODUCT_ID", productId.longValue());
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ProductActivity.this, "Invalid product ID", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onEdit(Product product) {
-                showProductDialog(product);
+                if (isAdmin) {
+                    showProductDialog(product);
+                } else {
+                    Toast.makeText(ProductActivity.this, "Only admins can edit products", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onDelete(Product product) {
-                showDeleteConfirmationDialog(product);
+                if (isAdmin) {
+                    showDeleteConfirmationDialog(product);
+                } else {
+                    Toast.makeText(ProductActivity.this, "Only admins can delete products", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onAddToCart(Product product) {
                 CartUtils.addProductToCart(ProductActivity.this, product.getProductId(), 1);
             }
-        });
+
+            @Override
+            public void onViewCart() {
+                Intent intent = new Intent(ProductActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        }, isAdmin); // Pass isAdmin to adapter
 
         recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewProducts.setAdapter(adapter);

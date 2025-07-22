@@ -1,14 +1,17 @@
 package com.example.prmasignment.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Product {
-    private int productId;
+    @SerializedName("id")
+    private Long productId;
     private String name;
     private String description;
     private double price;
     private int stockQuantity;
     private String imageUrl;
-    private int categoryId;
-    private int brandId;
+    private Long categoryId;
+    private Long brandId;
     private String petType;
     private String lifeStage;
     private String specialNeeds;
@@ -19,7 +22,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productId, String name, String description, double price, int stockQuantity, String imageUrl, int categoryId, int brandId, String petType, String lifeStage, String specialNeeds, double weightKg, String createdAt, String updatedAt) {
+    public Product(Long productId, String name, String description, double price, int stockQuantity, String imageUrl, Long categoryId, Long brandId, String petType, String lifeStage, String specialNeeds, double weightKg, String createdAt, String updatedAt) {
         this.productId = productId;
         this.name = name;
         this.description = description;
@@ -37,11 +40,11 @@ public class Product {
     }
 
     // Getters and Setters
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -85,19 +88,19 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public int getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
-    public int getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(int brandId) {
+    public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 

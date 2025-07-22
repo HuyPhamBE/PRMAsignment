@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  */
 public class AddToCartFab extends FloatingActionButton {
     
-    private int productId = -1;
+    private Long productId = -1L;
     private int quantity = 1;
     
     public AddToCartFab(Context context) {
@@ -41,7 +41,7 @@ public class AddToCartFab extends FloatingActionButton {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (productId != -1) {
+                if (productId != -1L) {
                     if (CartUtils.isUserLoggedIn(getContext())) {
                         CartUtils.addProductToCart(getContext(), productId, quantity);
                     } else {
@@ -59,7 +59,7 @@ public class AddToCartFab extends FloatingActionButton {
         });
     }
     
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
     
@@ -67,7 +67,7 @@ public class AddToCartFab extends FloatingActionButton {
         this.quantity = quantity;
     }
     
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
     
