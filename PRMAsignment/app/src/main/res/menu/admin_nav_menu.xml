@@ -34,6 +34,9 @@
         <item
             android:id="@+id/nav_stores"
             android:title="Quản lý Cửa hàng" />
+        <item
+            android:id="@+id/nav_orders"
+            android:title="Quản lý Đơn hàng" />
     </group>
 
     <!-- Nhóm menu phụ (không checkable) -->

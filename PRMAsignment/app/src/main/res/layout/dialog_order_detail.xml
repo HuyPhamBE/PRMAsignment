@@ -1,0 +1,103 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 🆔 Order ID -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_receipt"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvOrderId"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- 📦 Status -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_status"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvStatus"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- 💵 Total Amount -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_money"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvAmount"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- 📅 Order Date -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_calendar"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvDate"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- 👤 Customer Name -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_user"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvUser"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- 📧 Email -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_email"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvEmail"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- ☎️ Phone -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_phone"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvPhone"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- 🏠 Address -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_location"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvAddress"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+        <!-- 💳 Payment -->
+        <LinearLayout style="@style/DetailItem">
+            <ImageView
+                android:src="@drawable/ic_payment"
+                style="@style/DetailIcon"/>
+            <TextView
+                android:id="@+id/tvPaymentStatus"
+                style="@style/DetailLabel"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

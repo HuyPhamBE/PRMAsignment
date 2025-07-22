@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import com.example.prmasignment.R;
 import com.example.prmasignment.ui.adminBrand.AdminBrandFragment;
 import com.example.prmasignment.ui.adminCate.AdminCategoryFragment;
+import com.example.prmasignment.ui.adminOrder.AdminOrderFragment;
 import com.example.prmasignment.ui.adminProduct.AdminProductFragment;
 import com.example.prmasignment.ui.adminStoreLoction.AdminStoreLocationFragment;
 import com.example.prmasignment.ui.adminUser.AdminUserFragment;
@@ -59,6 +60,8 @@ public class AdminActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa backstack
                 startActivity(intent);
                 finish();
+            } else if (id == R.id.nav_orders) {
+                selectedFragment = new AdminOrderFragment();
             }
 
 
