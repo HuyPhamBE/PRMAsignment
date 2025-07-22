@@ -23,12 +23,10 @@
         <!-- Logo thương hiệu -->
         <ImageView
             android:id="@+id/imageBrandLogo"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="16dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/ic_launcher_background"
-             />
+            android:layout_width="8dp"
+            android:layout_height="40dp"
+            android:background="@drawable/category_indicator"
+            android:layout_marginEnd="16dp" />
 
         <!-- Nội dung thương hiệu -->
         <LinearLayout
