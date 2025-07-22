@@ -14,13 +14,13 @@
         android:text="Notifications"
         android:textStyle="bold"
         android:textSize="25dp"
-        android:textColor="@color/white"
+        android:textColor="@color/on_primary_color"
         android:paddingBottom="4dp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/white"/>
+        android:background="@color/on_primary_color"/>
 
     <LinearLayout
         android:id="@+id/itemContainer"
