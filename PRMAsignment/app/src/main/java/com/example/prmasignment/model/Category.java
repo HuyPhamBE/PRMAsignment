@@ -1,37 +1,25 @@
 package com.example.prmasignment.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Category {
-    private int categoryId;
+    @SerializedName("categoryId")
+    private int id;
     private String name;
-    private String description;
+    private String description;  // Nếu có
 
-    public Category(int categoryId, String description, String name) {
-        this.categoryId = categoryId;
-        this.description = description;
+    public Category(int id, String name, String description) {
+        this.id = id;
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

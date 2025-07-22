@@ -11,6 +11,7 @@ import com.example.prmasignment.model.CartItem;
 
 import UI.Notifications.BaseActivity;
 
+import com.example.prmasignment.ui.adminCate.AdminCategoryFragment;
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -25,5 +26,13 @@ public class MainActivity extends BaseActivity {
         });
 
         addNotification(new CartItem(4, "New Product", 1, 1, 1));
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new AdminCategoryFragment())
+                    .commit();
+        }
     }
+
 }
