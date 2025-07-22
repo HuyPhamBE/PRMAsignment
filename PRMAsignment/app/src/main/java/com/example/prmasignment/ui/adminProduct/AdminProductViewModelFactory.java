@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.prmasignment.repository.AdminProductRepository;
 
 public class AdminProductViewModelFactory implements ViewModelProvider.Factory {
+    
     private final AdminProductRepository repository;
 
     public AdminProductViewModelFactory(AdminProductRepository repository) {
@@ -22,4 +23,3 @@ public class AdminProductViewModelFactory implements ViewModelProvider.Factory {
         throw new IllegalArgumentException("Unknown ViewModel class");
     }
 }
-

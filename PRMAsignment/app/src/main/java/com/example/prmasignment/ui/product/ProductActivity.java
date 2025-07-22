@@ -1,4 +1,4 @@
-package com.example.prmasignment.ui.auth;
+package com.example.prmasignment.ui.product;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -7,14 +7,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,20 +22,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prmasignment.R;
 import com.example.prmasignment.dtos.request.ProductRequest;
 import com.example.prmasignment.model.Product;
+import com.example.prmasignment.ui.auth.SessionManager;
 import com.example.prmasignment.ui.cart.CartActivity;
-import com.example.prmasignment.ui.product.ProductAdapter;
-import com.example.prmasignment.ui.product.ProductDetailActivity;
-import com.example.prmasignment.ui.product.ProductViewModel;
-import com.example.prmasignment.ui.product.ProductViewModelFactory;
-import com.example.prmasignment.ui.profile.ProfileActivity;
 import com.example.prmasignment.utils.CartUtils;
-
-import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity {
 
     private ProductViewModel viewModel;
     private ProductAdapter adapter;
@@ -47,17 +40,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private List<Product> allProducts = new ArrayList<>();
     private List<Product> filteredProducts = new ArrayList<>();
-    
     private boolean isAdmin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_product);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        
         // Check user role for admin functionality
         checkUserRole();
         
@@ -71,12 +60,12 @@ public class HomeActivity extends AppCompatActivity {
 
         viewModel.fetchAllProducts();
     }
-    
+
     private void checkUserRole() {
         SessionManager sessionManager = new SessionManager(this);
         String role = sessionManager.getRole();
         isAdmin = "ADMIN".equalsIgnoreCase(role);
-        Log.d("HomeActivity", "User role: " + role + ", isAdmin: " + isAdmin);
+        Log.d("ProductActivity", "User role: " + role + ", isAdmin: " + isAdmin);
     }
 
     private void initViews() {
@@ -93,16 +82,13 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new ProductAdapter(filteredProducts, new ProductAdapter.OnProductActionListener() {
             @Override
             public void onView(Product product) {
-                Log.d("HomeActivity", "onView clicked for product: " + product.getName() + " ID: " + product.getProductId());
-                Intent intent = new Intent(HomeActivity.this, ProductDetailActivity.class);
+                Intent intent = new Intent(ProductActivity.this, ProductDetailActivity.class);
                 Long productId = product.getProductId();
                 if (productId != null) {
-                    Log.d("HomeActivity", "Putting product ID in intent: " + productId.longValue());
                     intent.putExtra("PRODUCT_ID", productId.longValue());
                     startActivity(intent);
                 } else {
-                    Log.e("HomeActivity", "Product ID is null for product: " + product.getName());
-                    Toast.makeText(HomeActivity.this, "Invalid product ID", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductActivity.this, "Invalid product ID", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -111,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (isAdmin) {
                     showProductDialog(product);
                 } else {
-                    Toast.makeText(HomeActivity.this, "Only admins can edit products", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductActivity.this, "Only admins can edit products", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -120,20 +106,18 @@ public class HomeActivity extends AppCompatActivity {
                 if (isAdmin) {
                     showDeleteConfirmationDialog(product);
                 } else {
-                    Toast.makeText(HomeActivity.this, "Only admins can delete products", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductActivity.this, "Only admins can delete products", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onAddToCart(Product product) {
-                Log.d("HomeActivity", "onAddToCart clicked for product: " + product.getName() + " ID: " + product.getProductId());
-                CartUtils.addProductToCart(HomeActivity.this, product.getProductId(), 1);
+                CartUtils.addProductToCart(ProductActivity.this, product.getProductId(), 1);
             }
 
             @Override
             public void onViewCart() {
-                Log.d("HomeActivity", "onViewCart clicked");
-                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+                Intent intent = new Intent(ProductActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         }, isAdmin); // Pass isAdmin to adapter
@@ -152,7 +136,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupObservers() {
         viewModel.productsLiveData.observe(this, products -> {
-            Log.d("HomeActivity", "Observed " + (products != null ? products.size() : 0) + " products");
+            Log.d("ProductActivity", "Observed " + (products != null ? products.size() : 0) + " products");
             allProducts.clear();
             if (products != null) {
                 allProducts.addAll(products);
@@ -213,7 +197,7 @@ public class HomeActivity extends AppCompatActivity {
             for (Product product : allProducts) {
                 if (product.getName().toLowerCase().contains(lowerCaseQuery) ||
                     product.getDescription().toLowerCase().contains(lowerCaseQuery) ||
-                    (product.getPetType() != null && product.getPetType().toLowerCase().contains(lowerCaseQuery))) {
+                    product.getPetType().toLowerCase().contains(lowerCaseQuery)) {
                     filteredProducts.add(product);
                 }
             }
@@ -232,12 +216,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void showProductDialog(Product product) {
-        if (!isAdmin) {
-            Toast.makeText(this, "Only admins can add/edit products", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        
+    private void showProductDialog(@Nullable Product product) {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_product, null);
 
         EditText etName = dialogView.findViewById(R.id.etProductName);
@@ -314,11 +293,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void showDeleteConfirmationDialog(Product product) {
-        if (!isAdmin) {
-            Toast.makeText(this, "Only admins can delete products", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        
         new AlertDialog.Builder(this)
                 .setTitle("Delete Product")
                 .setMessage("Are you sure you want to delete \"" + product.getName() + "\"?")
@@ -327,41 +301,5 @@ public class HomeActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
-    }
-
-    // Inflate menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    // Handle icon click
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_cart) {
-            startActivity(new Intent(this, CartActivity.class));
-            return true;
-        } else if (item.getItemId() == R.id.action_profile) {
-            // Show popup menu
-            androidx.appcompat.widget.PopupMenu popup = new androidx.appcompat.widget.PopupMenu(this, findViewById(R.id.action_profile));
-            popup.getMenuInflater().inflate(R.menu.menu_profile_popup, popup.getMenu());
-            popup.setOnMenuItemClickListener(menuItem -> {
-                if (menuItem.getItemId() == R.id.menu_view_profile) {
-                    startActivity(new Intent(this, ProfileActivity.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.menu_logout) {
-                    SessionManager sessionManager = new SessionManager(this);
-                    sessionManager.clearSession();
-                    startActivity(new Intent(this, LoginActivity.class));
-                    finish();
-                    return true;
-                }
-                return false;
-            });
-            popup.show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

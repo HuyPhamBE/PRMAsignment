@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,85 +9,95 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Product Name -->
         <EditText
-            android:id="@+id/editProductName"
+            android:id="@+id/etProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Product Name"
-            android:inputType="textCapSentences"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
 
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:background="@drawable/edittext_background" />
-
-        <!-- Description -->
         <EditText
-            android:id="@+id/editProductDescription"
+            android:id="@+id/etProductDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
+            android:hint="Product Description"
             android:inputType="textMultiLine"
-            android:minLines="3"
-            android:maxLines="5"
-            android:layout_marginTop="12dp"
-            android:padding="12dp"
-            android:background="@drawable/edittext_background" />
+            android:lines="3"
+            android:layout_marginBottom="8dp" />
 
-        <!-- Price -->
         <EditText
-            android:id="@+id/editProductPrice"
+            android:id="@+id/etProductPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Price"
+            android:hint="Price ($)"
             android:inputType="numberDecimal"
-            android:layout_marginTop="12dp"
-            android:padding="12dp"
-            android:background="@drawable/edittext_background" />
+            android:layout_marginBottom="8dp" />
 
-        <!-- Stock Quantity -->
         <EditText
-            android:id="@+id/editProductStock"
+            android:id="@+id/etProductStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Stock Quantity"
             android:inputType="number"
-            android:layout_marginTop="12dp"
-            android:padding="12dp"
-            android:background="@drawable/edittext_background" />
+            android:layout_marginBottom="8dp" />
 
-        <!-- Image URL -->
         <EditText
-            android:id="@+id/editProductImageUrl"
+            android:id="@+id/etProductImageUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Image URL"
             android:inputType="textUri"
-            android:layout_marginTop="12dp"
-            android:padding="12dp"
-            android:background="@drawable/edittext_background" />
-        <LinearLayout
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductCategoryId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="24dp"
-            android:gravity="end">
+            android:hint="Category ID"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
 
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hủy"
-                style="@style/Widget.Material3.Button.TextButton"/>
+        <EditText
+            android:id="@+id/etProductBrandId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand ID"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
 
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lưu lại"
-                android:layout_marginStart="8dp"
-                style="@style/Widget.Material3.Button"/>
-        </LinearLayout>
+        <EditText
+            android:id="@+id/etProductPetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Type (e.g., Dog, Cat)"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductLifeStage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Life Stage (e.g., Puppy, Adult)"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductSpecialNeeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Special Needs (optional)"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etProductWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Weight (kg)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="8dp" />
+
     </LinearLayout>
 
 </ScrollView>

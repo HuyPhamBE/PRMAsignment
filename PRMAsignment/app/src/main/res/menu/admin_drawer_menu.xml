@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_products"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="Products" />
+
+    <item
+        android:id="@+id/nav_categories"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Categories" />
+
+    <item
+        android:id="@+id/nav_brands"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Brands" />
+
+    <item
+        android:id="@+id/nav_users"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Users" />
+
+    <item
+        android:id="@+id/nav_stores"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Store Locations" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="Logout" />
+
+</menu>
