@@ -2,8 +2,12 @@ package com.example.prmasignment.ui.adminOrder;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.prmasignment.R;
 import com.example.prmasignment.model.OrderResponse;
+import com.example.prmasignment.ui.adminMap.AdminMapActivity;
 
 import java.time.Instant;
 import java.time.ZoneId;
@@ -19,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 
 public class OrderDetailDialog extends DialogFragment {
     private final OrderResponse order;
+    ImageButton btnMap;
 
     public OrderDetailDialog(OrderResponse order) {
         this.order = order;
@@ -45,13 +51,9 @@ public class OrderDetailDialog extends DialogFragment {
         tvStatus.setText("Status: " + order.getStatus());
         tvAmount.setText("Total: $" + order.getTotalAmount());
 
-        if (order.getOrderDate() != null) {
-            Instant instant = Instant.parse(order.getOrderDate());
-            String formattedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-                    .withZone(ZoneId.systemDefault())
-                    .format(instant);
-            tvDate.setText("Date: " + formattedDate);
-        }
+        btnMap = view.findViewById(R.id.btnShowOnMap);
+
+
 
 
 
@@ -65,6 +67,19 @@ public class OrderDetailDialog extends DialogFragment {
             var addr = order.getShippingAddressData();
             String fullAddress = addr.getAddressLine1() + ", " + addr.getCity() + ", " + addr.getStateProvince() + " " + addr.getPostalCode() + ", " + addr.getCountry();
             tvAddress.setText("Shipping: " + fullAddress);
+
+            btnMap.setVisibility(View.VISIBLE);
+            btnMap.setOnClickListener(v -> {
+                // Use requireContext() to create the Intent
+                Intent intent = new Intent(requireContext(), AdminMapActivity.class);
+                // Pass the clean address string to the next activity
+                intent.putExtra("address", fullAddress);
+                // Use requireContext() to start the activity
+                requireContext().startActivity(intent);
+            });
+        } else {
+            tvAddress.setText("Shipping: No address provided");
+            btnMap.setVisibility(View.GONE);
         }
 
         tvPaymentStatus.setText("Payment Status: " + order.getPaymentStatus());

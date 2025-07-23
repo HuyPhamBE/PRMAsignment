@@ -51,4 +51,7 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+
 }

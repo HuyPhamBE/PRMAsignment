@@ -99,5 +99,18 @@
                 style="@style/DetailLabel"/>
         </LinearLayout>
 
+        <LinearLayout style="@style/DetailItem">
+            <ImageButton
+                android:id="@+id/btnShowOnMap"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Show on map"
+                android:src="@drawable/ic_map" />
+        </LinearLayout>
     </LinearLayout>
+
 </ScrollView>
