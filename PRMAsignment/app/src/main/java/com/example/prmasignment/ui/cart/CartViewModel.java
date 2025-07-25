@@ -4,13 +4,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.prmasignment.dtos.request.AddToCartRequest;
 import com.example.prmasignment.dtos.request.UpdateCartItemRequest;
-import com.example.prmasignment.dtos.response.CartResponse;
+import com.example.prmasignment.model.Cart;
 import com.example.prmasignment.repository.CartRepository;
 
 public class CartViewModel extends ViewModel {
     private final CartRepository repository;
 
-    public MutableLiveData<CartResponse> cartLiveData = new MutableLiveData<>();
+    public MutableLiveData<Cart> cartLiveData = new MutableLiveData<>();
     public MutableLiveData<Boolean> addToCartResult = new MutableLiveData<>();
     public MutableLiveData<Boolean> updateCartItemResult = new MutableLiveData<>();
     public MutableLiveData<Boolean> removeFromCartResult = new MutableLiveData<>();

@@ -5,7 +5,7 @@ import com.example.prmasignment.api.ApiClient;
 import com.example.prmasignment.api.CartApi;
 import com.example.prmasignment.dtos.request.AddToCartRequest;
 import com.example.prmasignment.dtos.request.UpdateCartItemRequest;
-import com.example.prmasignment.dtos.response.CartResponse;
+import com.example.prmasignment.model.Cart;
 import com.example.prmasignment.model.ApiResponse;
 
 import retrofit2.Call;
@@ -19,19 +19,25 @@ public class CartRepository {
         this.cartApi = ApiClient.getClientWithAuth(token).create(CartApi.class);
     }
 
-    public void getUserCart(String userId, MutableLiveData<CartResponse> liveData) {
-        cartApi.getUserCart(userId).enqueue(new Callback<CartResponse>() {
+    public void getUserCart(String userId, MutableLiveData<Cart> liveData) {
+        cartApi.getUserCart(userId).enqueue(new Callback<Cart>() {
             @Override
-            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                android.util.Log.d("CartRepository", "Response code: " + response.code());
                 if (response.isSuccessful() && response.body() != null) {
-                    liveData.postValue(response.body());
+                    Cart cart = response.body();
+                    android.util.Log.d("CartRepository", "Cart parsed successfully - ID: " + cart.getCartId());
+                    android.util.Log.d("CartRepository", "Cart items count: " + (cart.getCartItems() != null ? cart.getCartItems().size() : "null"));
+                    liveData.postValue(cart);
                 } else {
+                    android.util.Log.e("CartRepository", "Response not successful or body is null");
                     liveData.postValue(null);
                 }
             }
 
             @Override
-            public void onFailure(Call<CartResponse> call, Throwable t) {
+            public void onFailure(Call<Cart> call, Throwable t) {
+                android.util.Log.e("CartRepository", "Cart request failed: " + t.getMessage());
                 liveData.postValue(null);
             }
         });

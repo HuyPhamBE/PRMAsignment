@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.prmasignment.R;
-import com.example.prmasignment.dtos.response.CartResponse;
+import com.example.prmasignment.model.Cart;
+import com.example.prmasignment.model.CartItem;
 import com.example.prmasignment.ui.auth.SessionManager;
 import com.example.prmasignment.utils.CartUtils;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -63,17 +64,17 @@ public class CartActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         adapter = new CartAdapter(new ArrayList<>(), new CartAdapter.OnCartItemActionListener() {
             @Override
-            public void onQuantityIncrease(CartResponse.CartItemResponse item) {
+            public void onQuantityIncrease(CartItem item) {
                 viewModel.updateCartItem(item.getCartItemId(), item.getQuantity() + 1);
             }
 
             @Override
-            public void onQuantityDecrease(CartResponse.CartItemResponse item) {
+            public void onQuantityDecrease(CartItem item) {
                 viewModel.updateCartItem(item.getCartItemId(), item.getQuantity() - 1);
             }
 
             @Override
-            public void onRemoveItem(CartResponse.CartItemResponse item) {
+            public void onRemoveItem(CartItem item) {
                 showRemoveItemDialog(item);
             }
         });
@@ -92,9 +93,16 @@ public class CartActivity extends AppCompatActivity {
 
     private void setupObservers() {
         viewModel.cartLiveData.observe(this, cart -> {
-            if (cart != null && cart.getItems() != null && !cart.getItems().isEmpty()) {
+            android.util.Log.d("CartActivity", "Cart received: " + (cart != null ? "not null" : "null"));
+            if (cart != null) {
+                android.util.Log.d("CartActivity", "Cart items: " + (cart.getCartItems() != null ? cart.getCartItems().size() : "null"));
+            }
+            
+            if (cart != null && cart.getCartItems() != null && !cart.getCartItems().isEmpty()) {
+                android.util.Log.d("CartActivity", "Showing cart content");
                 showCartContent(cart);
             } else {
+                android.util.Log.d("CartActivity", "Showing empty cart");
                 showEmptyCart();
             }
         });
@@ -143,21 +151,34 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
-    private void showCartContent(CartResponse cart) {
+    private void showCartContent(Cart cart) {
         layoutEmptyCart.setVisibility(View.GONE);
         layoutCartContent.setVisibility(View.VISIBLE);
 
-        adapter.setCartItems(cart.getItems());
-        textTotalItems.setText(cart.getTotalItems() + " items");
-        textTotalAmount.setText(formatCurrency(cart.getTotalAmount()));
+        adapter.setCartItems(cart.getCartItems());
+        
+        // Calculate totals
+        int totalItems = 0;
+        double totalAmount = 0.0;
+        
+        if (cart.getCartItems() != null) {
+            for (CartItem item : cart.getCartItems()) {
+                totalItems += item.getQuantity();
+                totalAmount += item.getSubtotal();
+            }
+        }
+        
+        textTotalItems.setText(totalItems + " items");
+        textTotalAmount.setText(formatCurrency(totalAmount));
     }
 
     private void showEmptyCart() {
+        android.util.Log.d("CartActivity", "Showing empty cart UI");
         layoutEmptyCart.setVisibility(View.VISIBLE);
         layoutCartContent.setVisibility(View.GONE);
     }
 
-    private void showRemoveItemDialog(CartResponse.CartItemResponse item) {
+    private void showRemoveItemDialog(CartItem item) {
         new AlertDialog.Builder(this)
                 .setTitle("Remove Item")
                 .setMessage("Are you sure you want to remove " + item.getProductName() + " from your cart?")

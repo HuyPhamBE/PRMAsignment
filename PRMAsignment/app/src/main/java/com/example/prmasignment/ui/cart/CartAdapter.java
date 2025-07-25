@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.prmasignment.R;
-import com.example.prmasignment.dtos.response.CartResponse;
+import com.example.prmasignment.model.CartItem;
 import com.google.android.material.button.MaterialButton;
 import java.text.NumberFormat;
 import java.util.List;
@@ -17,21 +17,21 @@ import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHolder> {
 
-    private List<CartResponse.CartItemResponse> cartItems;
+    private List<CartItem> cartItems;
     private OnCartItemActionListener listener;
 
     public interface OnCartItemActionListener {
-        void onQuantityIncrease(CartResponse.CartItemResponse item);
-        void onQuantityDecrease(CartResponse.CartItemResponse item);
-        void onRemoveItem(CartResponse.CartItemResponse item);
+        void onQuantityIncrease(CartItem item);
+        void onQuantityDecrease(CartItem item);
+        void onRemoveItem(CartItem item);
     }
 
-    public CartAdapter(List<CartResponse.CartItemResponse> cartItems, OnCartItemActionListener listener) {
+    public CartAdapter(List<CartItem> cartItems, OnCartItemActionListener listener) {
         this.cartItems = cartItems;
         this.listener = listener;
     }
 
-    public void setCartItems(List<CartResponse.CartItemResponse> newItems) {
+    public void setCartItems(List<CartItem> newItems) {
         this.cartItems = newItems;
         notifyDataSetChanged();
     }
@@ -46,7 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
-        CartResponse.CartItemResponse item = cartItems.get(position);
+        CartItem item = cartItems.get(position);
         
         holder.textProductName.setText(item.getProductName());
         holder.textProductPrice.setText(formatCurrency(item.getProductPrice()));

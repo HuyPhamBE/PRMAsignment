@@ -7,7 +7,7 @@ import com.example.prmasignment.repository.CartRepository;
 import com.example.prmasignment.repository.UserRepository;
 import com.example.prmasignment.ui.auth.SessionManager;
 import com.example.prmasignment.dtos.response.UserResponse;
-import com.example.prmasignment.dtos.response.CartResponse;
+import com.example.prmasignment.model.Cart;
 
 /**
  * Utility class for cart operations
@@ -76,7 +76,7 @@ public class CartUtils {
     /**
      * Load user cart by username (converts username to userId then loads cart)
      */
-    public static void loadUserCart(Context context, String username, MutableLiveData<CartResponse> cartLiveData) {
+    public static void loadUserCart(Context context, String username, MutableLiveData<Cart> cartLiveData) {
         SessionManager sessionManager = new SessionManager(context);
         String token = sessionManager.getToken();
         
